@@ -1,9 +1,18 @@
 pipeline {
     agent any
+    
+    environment {
+        APP_PORT=9090
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                mvn -DskipTests package
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                 mvn test
             }
         }
     }
