@@ -3,9 +3,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean verify"
+                // Use Maven tool
+                withMaven(maven: 'Maven') {
+                    sh "mvn clean verify"
+                }
             }
         }
     }
 }
-
